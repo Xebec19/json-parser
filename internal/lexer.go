@@ -29,7 +29,7 @@ type TokenList struct {
 
 // Lexer takes a string and convert it
 // to TokenList struct
-func Lexer(input string) []TokenList {
+func Lexer(input string) ([]TokenList, error) {
 
 	tokens := []TokenList{}
 	inputList := strings.Split(input, "")
@@ -71,9 +71,11 @@ func Lexer(input string) []TokenList {
 				Key: SYMBOLS["RPAREN"],
 				Val: elem,
 			})
+		} else {
+			return nil, ErrInvalidExpression
 		}
 
 	}
 
-	return tokens
+	return tokens, nil
 }

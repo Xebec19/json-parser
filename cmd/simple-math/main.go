@@ -3,8 +3,11 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log/slog"
 	"os"
 	"strings"
+
+	"github.com/Xebec19/json-parser/internal"
 )
 
 func main() {
@@ -15,5 +18,11 @@ func main() {
 	expr, _ := reader.ReadString('\n')
 	expr = strings.TrimSpace(expr)
 
-	fmt.Println(expr)
+	tokens, err := internal.Lexer(expr)
+	if err != nil {
+		slog.Error("parse token", "error", err)
+		os.Exit(1)
+	}
+
+	fmt.Println(tokens)
 }
