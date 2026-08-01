@@ -1,0 +1,5 @@
+{
+    "name": "Rohan",
+    "age": 20,
+    "skills": ["Go","Typescript","Docker","Kubernetes"]
+}
