@@ -1,81 +1,17 @@
 package internal
 
-import "strings"
+// takes text and returns Token
+func Lexer(text string) []Token {
 
-// re := regexp.MustCompile(`\d+`)
+	var token []Token
 
-// re.MatchString("abc123")
-// re.Match([]byte("abc123"))
+	for _, c := range text {
 
-// const T = map[string]string{
-// 	"Number": "Number",
-
-// }
-
-var SYMBOLS = map[string]string{
-	"NUMBER": "NUMBER",
-	"PLUS":   "PLUS",
-	"SUBST":  "SUBSTRACT",
-	"MULT":   "MULTIPLY",
-	"DIV":    "DIVIDE",
-	"LPAREN": "LPAREN",
-	"RPAREN": "RPAREN",
-}
-
-type TokenList struct {
-	Key string
-	Val string
-}
-
-// Lexer takes a string and convert it
-// to TokenList struct
-func Lexer(input string) ([]TokenList, error) {
-
-	tokens := []TokenList{}
-	inputList := strings.Split(input, "")
-
-	for _, elem := range inputList {
-
-		if isNumber(elem) {
-			tokens = append(tokens, TokenList{
-				Key: SYMBOLS["NUMBER"],
-				Val: elem,
-			})
-		} else if elem == "+" {
-			tokens = append(tokens, TokenList{
-				Key: SYMBOLS["PLUS"],
-				Val: elem,
-			})
-		} else if elem == "-" {
-			tokens = append(tokens, TokenList{
-				Key: SYMBOLS["SUBST"],
-				Val: elem,
-			})
-		} else if elem == "*" {
-			tokens = append(tokens, TokenList{
-				Key: SYMBOLS["MULT"],
-				Val: elem,
-			})
-		} else if elem == "/" {
-			tokens = append(tokens, TokenList{
-				Key: SYMBOLS["DIV"],
-				Val: elem,
-			})
-		} else if elem == "(" {
-			tokens = append(tokens, TokenList{
-				Key: SYMBOLS["LPAREN"],
-				Val: elem,
-			})
-		} else if elem == ")" {
-			tokens = append(tokens, TokenList{
-				Key: SYMBOLS["RPAREN"],
-				Val: elem,
-			})
-		} else {
-			return nil, ErrInvalidExpression
+		if val, ok := tokenMapping[c]; ok {
+			token = append(token, val)
 		}
 
 	}
 
-	return tokens, nil
+	return token
 }
