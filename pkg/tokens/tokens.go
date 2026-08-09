@@ -1,4 +1,4 @@
-package internal
+package tokens
 
 type Token string
 
@@ -12,7 +12,7 @@ const (
 	COMMA            Token = "COMMA"
 )
 
-var tokenMapping = map[rune]Token{
+var TokenMapping = map[rune]Token{
 	'{': LEFT_PARENTHESIS,
 	'}': RIGHT_PARETHESIS,
 	'[': LEFT_BRACKETS,

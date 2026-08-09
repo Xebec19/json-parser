@@ -1,13 +1,15 @@
 package internal
 
-// takes text and returns Token
-func Lexer(text string) []Token {
+import "github.com/Xebec19/json-parser/pkg/tokens"
 
-	var token []Token
+// takes text and returns Token
+func Lexer(text string) []tokens.Token {
+
+	var token []tokens.Token
 
 	for _, c := range text {
 
-		if val, ok := tokenMapping[c]; ok {
+		if val, ok := tokens.TokenMapping[c]; ok {
 			token = append(token, val)
 		}
 

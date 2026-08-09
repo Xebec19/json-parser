@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 
 	"github.com/Xebec19/json-parser/internal"
+	"github.com/Xebec19/json-parser/pkg/tokens"
 )
 
 func main() {
@@ -37,7 +38,7 @@ func main() {
 
 	scanner := bufio.NewScanner(file)
 
-	var token []internal.Token
+	var token []tokens.Token
 
 	for scanner.Scan() {
 		token = append(token, internal.Lexer(scanner.Text())...)
